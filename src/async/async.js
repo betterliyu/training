@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function readFile(fileName) {
+function readFile(fileName)  {
   return new Promise((resolve, reject) => {
     fs.readFile(fileName, (error, data) => {
       if (error) return reject(error);

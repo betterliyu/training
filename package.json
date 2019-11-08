@@ -5,8 +5,8 @@
   "author": "Eden Li",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint **/*.js",
-    "fix": "eslint **/*.js --fix"
+    "lint": "eslint src/**/*.js",
+    "fix": "eslint src/**/*.js --fix"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
@@ -22,9 +22,9 @@
     }
   },
   "lint-staged": {
-    "**/*.js": [
+    "src/**/*.js": [
       "prettier --config .prettierrc --write",
-      "eslint --fix",
+      "eslint src/**/*.js ",
       "git add"
     ]
   }
