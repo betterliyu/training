@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint src/**/*.js",
-    "fix": "eslint src/**/*.js --fix"
+    "fix": "eslint src/**/*.js --fix",
+    "beautify": "prettier --write src/**/*.js"
   },
   "devDependencies": {
     "eslint": "^6.6.0",
@@ -22,9 +23,9 @@
     }
   },
   "lint-staged": {
-    "src/**/*.js": [
-      "prettier --config .prettierrc --write",
-      "eslint src/**/*.js ",
+    "*.js": [
+      "prettier --write",
+      "eslint",
       "git add"
     ]
   }
