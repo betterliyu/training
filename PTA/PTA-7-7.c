@@ -1,3 +1,4 @@
+// https://pintia.cn/problem-sets/1163286449659043840/problems/1174288506294865955
 #include <stdio.h>
 
 int main()
