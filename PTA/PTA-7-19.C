@@ -1,3 +1,5 @@
+// https://pintia.cn/problem-sets/1163286449659043840/problems/1174288506294865967
+
 #include <stdio.h>
 #include <stdbool.h>
 
