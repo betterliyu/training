@@ -1,62 +1,70 @@
-const fs = require('fs');
-const path = require('path');
 const express = require('express');
+const Student = require('../services/student');
 
 const stdRouter = express.Router();
-
-const dbPath = path.resolve(__dirname, '../db.json');
 
 stdRouter
   .route('/')
   .get((req, res) => {
-    fs.readFile(dbPath, { encoding: 'utf-8' }, (err, data) => {
+    Student.getAll((err, students) => {
       if (err) {
         return res
           .status(500)
           .send('Server error');
       }
-      const db = JSON.parse(data);
-      console.log(db.students);
       return res.render('list.html', {
-        students: db.students,
+        students,
       });
     });
   });
 
 stdRouter
-  .route('/add')
+  .route('/student/add')
   .get((req, res) => {
     res.render('add.html');
   })
   .post((req, res) => {
-    fs.readFile(dbPath, { encoding: 'utf-8' }, (err, data) => {
+    Student.save(req.body, (err) => {
       if (err) {
         return res
           .status(500)
           .send('Server error');
       }
-      const db = JSON.parse(data);
-      const { students } = db;
-      students.push(req.body);
-
-      return res.send(true);
+      return res.redirect(302, '/');
     });
-    res.send('add');
   });
 
 stdRouter
-  .route('/edit/:id')
+  .route('/student/edit/:id')
   .get((req, res) => {
-    res.send('edit page');
+    Student.get(parseInt(req.params.id, 10), (err, student) => {
+      res.render('edit.html', {
+        student,
+      });
+    });
   })
   .post((req, res) => {
-    res.send('edit');
+    Student.update(req.body, (err) => {
+      if (err) {
+        return res
+          .status(500)
+          .send('Server error');
+      }
+      return res.redirect(302, '/');
+    });
   });
 
 stdRouter
-  .route('/delete/:id')
-  .delete((req, res) => {
-    res.send('delete');
+  .route('/student/delete/:id')
+  .get((req, res) => {
+    Student.delete(parseInt(req.params.id, 10), (err) => {
+      if (err) {
+        return res
+          .status(500)
+          .send('Server error');
+      }
+      return res.redirect(302, '/');
+    });
   });
 
 module.exports = stdRouter;

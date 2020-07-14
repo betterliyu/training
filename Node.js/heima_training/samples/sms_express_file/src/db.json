@@ -1,9 +1,1 @@
-{
-  "students": [
-  { "id": 1, "name": "zhangsan", "gender": 0, "age": 18, "hobbies": "coding, danceing, singing"},
-  { "id": 2, "name": "zhangsan", "gender": 0, "age": 18, "hobbies": "coding, danceing, singing"},
-  { "id": 3, "name": "zhangsan", "gender": 0, "age": 18, "hobbies": "coding, danceing, singing"},
-  { "id": 4, "name": "zhangsan", "gender": 0, "age": 18, "hobbies": "coding, danceing, singing"},
-  { "id": 5, "name": "zhangsan", "gender": 0, "age": 18, "hobbies": "coding, danceing, singing"}
-  ]
-}
+{"students":[]}
