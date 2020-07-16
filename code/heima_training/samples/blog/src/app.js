@@ -7,16 +7,16 @@ const session = require('express-session');
 const renderer = require('express-art-template');
 const passport = require('passport');
 const MongoStore = require('connect-mongo')(session);
-const initPassport = require('./config/passport');
+const initPassport = require('./auth/passport');
 const connect = require('./db');
 
+const IndexRouter = require('./controllers');
 const UserRouter = require('./controllers/user');
 
 const app = express();
 
 const dbConnection = connect();
 
-initPassport();
 
 // static resources
 app.use('public', express.static(path.join(__dirname, './public/')));
@@ -42,12 +42,15 @@ app.use(session({
   }),
 }));
 
+
 // auth
+initPassport();
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
+app.use('/', IndexRouter);
 app.use('/user', UserRouter);
 
 // 404 handler
