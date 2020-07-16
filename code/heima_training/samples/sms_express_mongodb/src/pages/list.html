@@ -1,0 +1,43 @@
+{{ extend './_layouts/home.html' }}
+
+{{ block 'title' }} Student List {{ /block }}
+
+{{ block 'main' }}
+<div>
+  <h2 class="my-2">Students</h2>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2 mb-2">
+      <a href="/student/add" class="btn btn-sm btn-outline-secondary">New Student</a>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Hobbies</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ each students }}
+        <tr>
+          <td>{{$value.id}}</td>
+          <td>{{$value.name}}</td>
+          <td>{{$value.age}}</td>
+          <td>{{$value.gender === 0 ? 'Male' : 'Female'}}</td>
+          <td>{{$value.hobbies}}</td>
+          <td>
+            <a href="/student/edit/{{$value.id}}">edit</a>
+            <a href="/student/delete/{{$value.id}}">delete</a>
+          </td>
+        </tr>
+        {{ /each }}
+      </tbody>
+    </table>
+  </div>
+</div>
+{{ /block }}
