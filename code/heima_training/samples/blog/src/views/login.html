@@ -1,1 +1,4 @@
 login
+{{ if(message && message.length > 0) }}
+<div>{{ message[0] }}</div>
+{{ /if }}
