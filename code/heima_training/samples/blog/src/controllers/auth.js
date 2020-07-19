@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
 const md5 = require('blueimp-md5');
 
-const UserModel = mongoose.model('User');
+const UserModel = require('../models/user');
 
 exports.loadLogin = (req, res) => {
   res.render('login.html', { message: req.flash('message') });
@@ -16,12 +15,11 @@ exports.loadRegister = (req, res) => {
   res.render('register.html', { message: req.flash('message') });
 };
 
-exports.register = (req, res, next) => {
+exports.register = async (req, res, next) => {
   try {
     req.body.password = md5(md5(req.body.password));
 
-    const user = new UserModel(req.body);
-    user.save();
+    await UserModel.create(req.body);
 
     res.redirect('/auth/login');
   } catch (error) {

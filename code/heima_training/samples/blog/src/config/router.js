@@ -16,12 +16,12 @@ module.exports = function router(app, passport) {
   app.get('/', isLoggedIn, post.load);
 
   // auth routes
-  app.post('/login', passport.authenticate('local', authLocalOption));
+  app.post('/auth/login', passport.authenticate('local', authLocalOption));
 
-  app.get('/login', auth.loadLogin);
-  app.get('/logout', auth.logout);
-  app.get('/register', auth.loadRegister);
-  app.post('/register', auth.register);
+  app.get('/auth/login', auth.loadLogin);
+  app.get('/auth/logout', auth.logout);
+  app.get('/auth/register', auth.loadRegister);
+  app.post('/auth/register', auth.register);
 
   // user routes
   app.get('/profile', isLoggedIn, user.profile);
@@ -41,7 +41,8 @@ module.exports = function router(app, passport) {
     return res.status(500)
       .json({
         errorCode: 500,
-        errorMessage: 'Server error.',
+        errorStack: err.stack,
+        errorMessage: err.message,
       });
   });
 };
