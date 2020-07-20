@@ -23,6 +23,12 @@ exports.register = async (req, res, next) => {
 
     res.redirect('/auth/login');
   } catch (error) {
-    next(error);
+    if (error.name === 'ValidationError') {
+      res.render('register.html', {
+        errors: error.errors,
+      });
+    } else {
+      next(error);
+    }
   }
 };

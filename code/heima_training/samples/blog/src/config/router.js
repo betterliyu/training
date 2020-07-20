@@ -33,16 +33,13 @@ module.exports = function router(app, passport) {
 
   // error handler
   // eslint-disable-next-line no-unused-vars
-  app.use((err, req, res, next) => {
-    if (err.errorCode) {
-      return res.status(err.errorCode)
-        .json(err);
+  app.use((error, req, res, next) => {
+    if (error.errorCode) {
+      return res.status(error.errorCode).json(error);
     }
-    return res.status(500)
-      .json({
-        errorCode: 500,
-        errorStack: err.stack,
-        errorMessage: err.message,
-      });
+    return res.status(500).json({
+      errorCode: 500,
+      error,
+    });
   });
 };

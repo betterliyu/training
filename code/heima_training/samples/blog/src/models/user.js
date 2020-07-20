@@ -41,9 +41,6 @@ UserSchema.virtual('fullName')
 
 UserSchema.path('email')
   .validate((email) => {
-    return email && !!email.length;
-  }, 'Email cannot be blank')
-  .validate((email) => {
     return regExp.email.test(email);
   }, 'Please enter an email')
   .validate(async function checkUserExist(email) {
@@ -65,8 +62,7 @@ UserSchema.path('email')
 //   if (error.name === 'ValidationError') {
 //     next({
 //       errorCode: 422,
-//       errorStack: error.stack,
-//       errorMessage: error.message,
+//       ...error,
 //     });
 //   } else {
 //     next();
