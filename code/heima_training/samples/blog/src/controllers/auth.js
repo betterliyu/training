@@ -12,7 +12,8 @@ exports.logout = (req, res) => {
 };
 
 exports.loadRegister = (req, res) => {
-  res.render('register.html', { message: req.flash('message') });
+  const errors = req.flash('validationError');
+  res.render('register.html', { errors });
 };
 
 exports.register = async (req, res, next) => {
@@ -24,9 +25,12 @@ exports.register = async (req, res, next) => {
     res.redirect('/auth/login');
   } catch (error) {
     if (error.name === 'ValidationError') {
-      res.render('register.html', {
-        errors: error.errors,
+      const errors = {};
+      Object.keys(error.errors).forEach((k) => {
+        errors.key = error.errors[k].message;
       });
+      req.flash('validationError', errors);
+      res.redirect('/auth/register');
     } else {
       next(error);
     }
