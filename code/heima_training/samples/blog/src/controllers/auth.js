@@ -3,7 +3,12 @@ const md5 = require('blueimp-md5');
 const UserModel = require('../models/user');
 
 exports.loadLogin = (req, res) => {
-  res.render('login.html', { message: req.flash('message') });
+  const errors = req.flash('error')[0];
+  const formData = req.flash('formData')[0];
+  res.render('login.html', {
+    formData,
+    errors,
+  });
 };
 
 exports.logout = (req, res) => {
@@ -12,27 +17,35 @@ exports.logout = (req, res) => {
 };
 
 exports.loadRegister = (req, res) => {
-  const errors = req.flash('validationError');
-  res.render('register.html', { errors });
+  const errors = req.flash('validationError')[0];
+  const formData = req.flash('formData')[0];
+  res.render('register.html', {
+    formData,
+    errors,
+  });
 };
 
 exports.register = async (req, res, next) => {
   try {
+    req.flash('formData', req.body);
+    if (req.body.password !== req.body.confirmPassword) {
+      req.flash('validationError', { conformPassword: 'The two passwords you entered did not match. ' });
+      return res.redirect('/auth/register');
+    }
     req.body.password = md5(md5(req.body.password));
 
     await UserModel.create(req.body);
 
-    res.redirect('/auth/login');
+    return res.redirect('/auth/login');
   } catch (error) {
     if (error.name === 'ValidationError') {
       const errors = {};
       Object.keys(error.errors).forEach((k) => {
-        errors.key = error.errors[k].message;
+        errors[k] = error.errors[k].message;
       });
       req.flash('validationError', errors);
-      res.redirect('/auth/register');
-    } else {
-      next(error);
+      return res.redirect('/auth/register');
     }
+    return next(error);
   }
 };
