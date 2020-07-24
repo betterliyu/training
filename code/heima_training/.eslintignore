@@ -1,5 +1,13 @@
 .vscode
+!.*.js
+typings
+es/**/*
+lib/**/*
 node_modules
 package-lock.json
 *.yml
 *.md
+_site
+dist
+**/*.d.ts
+*.txt
