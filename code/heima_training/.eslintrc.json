@@ -1,21 +1,16 @@
 {
   "env": {
-    "node": true,
+    "browser": true,
     "commonjs": true,
     "es2020": true
   },
-  "extends": [
-    "airbnb-base"
-  ],
-  "plugins": [
-    "html"
-  ],
+  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "plugins": ["html"],
   "parserOptions": {
     "ecmaVersion": 11
   },
   "rules": {
-    "no-console": "off",
-    "linebreak-style": "off",
-    "arrow-body-style": "off"
+    "prettier/prettier": "error",
+    "no-console": "off"
   }
 }

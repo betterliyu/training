@@ -17,21 +17,25 @@ module.exports = function useMiddlewares(app, passport, connection) {
   app.engine('html', renderer);
   app.set('views', path.join(__dirname, '../views/'));
 
-  app.use(bodyParser.urlencoded({
-    extended: false,
-  }));
+  app.use(
+    bodyParser.urlencoded({
+      extended: false,
+    })
+  );
   app.use(bodyParser.json());
 
   app.use(cookie());
-  app.use(session({
-    secret: 'you can\'t get it, bro!',
-    resave: true,
-    saveUninitialized: true,
-    // persistent session
-    store: new MongoStore({
-      mongooseConnection: connection,
-    }),
-  }));
+  app.use(
+    session({
+      secret: "you can't get it, bro!",
+      resave: true,
+      saveUninitialized: true,
+      // persistent session
+      store: new MongoStore({
+        mongooseConnection: connection,
+      }),
+    })
+  );
 
   app.use(flash());
   app.use(passport.initialize());

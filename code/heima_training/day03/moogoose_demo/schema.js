@@ -47,26 +47,22 @@ const admin = new User({
   email: 'admin@admin.com',
 });
 
-admin.save()
-  .then((value) => {
-    console.log(value);
-  });
+admin.save().then((value) => {
+  console.log(value);
+});
 
 // 查询
-User.find()
-  .then((value) => {
-    console.log(value);
-  });
+User.find().then((value) => {
+  console.log(value);
+});
 
-User.find({ username: 'admin' })
-  .then((value) => {
-    console.log(value);
-  });
+User.find({ username: 'admin' }).then((value) => {
+  console.log(value);
+});
 
-User.findOne({ username: 'admin' })
-  .then((value) => {
-    console.log(value);
-  });
+User.findOne({ username: 'admin' }).then((value) => {
+  console.log(value);
+});
 
 // 删除
 // User.deleteOne({ username: 'admin' })
@@ -80,16 +76,20 @@ User.findOne({ username: 'admin' })
 //   });
 
 // 修改
-User.updateOne({ username: 'admin' }, {
-  password: 'P@ssw0rd',
-})
-  .then((value) => {
-    console.log(value);
-  });
+User.updateOne(
+  { username: 'admin' },
+  {
+    password: 'P@ssw0rd',
+  }
+).then((value) => {
+  console.log(value);
+});
 
-User.findOneAndUpdate({ username: 'admin' }, {
-  password: 'P@1234567',
-})
-  .then((value) => {
-    console.log(value);
-  });
+User.findOneAndUpdate(
+  { username: 'admin' },
+  {
+    password: 'P@1234567',
+  }
+).then((value) => {
+  console.log(value);
+});

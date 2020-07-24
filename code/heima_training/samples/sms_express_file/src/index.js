@@ -22,4 +22,4 @@ app.set('views', path.join(__dirname, 'pages'));
 
 app.use(student);
 
-app.listen('3000', () => { });
+app.listen('3000', () => {});

@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const {
-  findIndex, maxBy, get, cloneDeep, find,
-} = require('lodash');
+const { findIndex, maxBy, get, cloneDeep, find } = require('lodash');
 
 const dbPath = path.resolve(__dirname, '../db.json');
 
@@ -10,7 +8,7 @@ const dbPath = path.resolve(__dirname, '../db.json');
  * get all students
  * @param {function} callback
  */
-exports.getAll = (callback = () => { }) => {
+exports.getAll = (callback = () => {}) => {
   fs.readFile(dbPath, { encoding: 'utf-8' }, (err, data) => {
     if (err) {
       callback(err);
@@ -33,7 +31,7 @@ exports.getAll = (callback = () => { }) => {
  * @param {Student} student
  * @param {Function} callback
  */
-exports.save = (student, callback = () => { }) => {
+exports.save = (student, callback = () => {}) => {
   fs.readFile(dbPath, { encoding: 'utf-8' }, (err, data) => {
     if (err) {
       callback(err);

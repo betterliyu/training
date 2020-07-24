@@ -1,14 +1,17 @@
 <html lang="en">
-
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.0.1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+    <meta name="generator" content="Jekyll v4.0.1" />
     <title>Checkout example · Bootstrap</title>
     <!-- Bootstrap core CSS -->
-    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
+    <link
+      href="/node_modules/bootstrap/dist/css/bootstrap.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
 
     <style>
       .bd-placeholder-img {
@@ -27,7 +30,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link href="/public/css/signin.css" rel="stylesheet">
+    <link href="/public/css/signin.css" rel="stylesheet" />
   </head>
 
   <body class="bg-light">
@@ -40,16 +43,29 @@
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" name="firstName" placeholder=""
-              value="{{ formData && formData.firstName }}" required="true">
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              placeholder=""
+              value="{{ formData && formData.firstName }}"
+              required="true"
+            />
             <div class="invalid-feedback">
               {{ errors && errors.firstName }}
             </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="familyName">Family name</label>
-            <input type="text" class="form-control" id="familyName" name="familyName"
-              value="{{ formData && formData.familyName }}" required="true">
+            <input
+              type="text"
+              class="form-control"
+              id="familyName"
+              name="familyName"
+              value="{{ formData && formData.familyName }}"
+              required="true"
+            />
             <div class="invalid-feedback">
               {{ errors && errors.familyName }}
             </div>
@@ -58,13 +74,19 @@
 
         <div class="mb-3">
           <label for="email">Email <span class="text-muted"></span></label>
-          <input type="email" class="form-control" id="email" name="email" value="{{ formData && formData.email }}"
-            placeholder="you@example.com" required="true">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            value="{{ formData && formData.email }}"
+            placeholder="you@example.com"
+            required="true"
+          />
           <div class="invalid-feedback">
             {{ errors && errors.email }}
           </div>
         </div>
-
 
         <div class="mb-3">
           <label for="username">Username</label>
@@ -72,18 +94,30 @@
             <div class="input-group-prepend">
               <span class="input-group-text">@</span>
             </div>
-            <input type="text" class="form-control" id="username" name="nickname"
-              value="{{ formData && formData.nickname }}" placeholder="Username" required="true">
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              name="nickname"
+              value="{{ formData && formData.nickname }}"
+              placeholder="Username"
+              required="true"
+            />
             <div class="invalid-feedback" style="width: 100%;">
               {{ errors && errors.nickname }}
             </div>
           </div>
         </div>
 
-
         <div class="mb-3">
           <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" name="password" required="true">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            required="true"
+          />
           <div class="invalid-feedback">
             {{ errors && errors.password }}
           </div>
@@ -91,7 +125,13 @@
 
         <div class="mb-3">
           <label for="confirm-password">Confirm Password</label>
-          <input type="password" class="form-control" id="confirm-password" name="confirmPassword" required="true">
+          <input
+            type="password"
+            class="form-control"
+            id="confirm-password"
+            name="confirmPassword"
+            required="true"
+          />
           <div class="invalid-feedback">
             {{ errors && errors.conformPassword }}
           </div>
@@ -110,5 +150,4 @@
       </footer>
     </div>
   </body>
-
 </html>

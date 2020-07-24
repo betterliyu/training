@@ -29,7 +29,9 @@ exports.register = async (req, res, next) => {
   try {
     req.flash('formData', req.body);
     if (req.body.password !== req.body.confirmPassword) {
-      req.flash('validationError', { conformPassword: 'The two passwords you entered did not match. ' });
+      req.flash('validationError', {
+        conformPassword: 'The two passwords you entered did not match. ',
+      });
       return res.redirect('/auth/register');
     }
     req.body.password = md5(md5(req.body.password));

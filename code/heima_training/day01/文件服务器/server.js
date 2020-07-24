@@ -67,8 +67,10 @@ http
                 if (err2) {
                   return res.end('404 not found');
                 }
-                const parent = url === '/public' || url === '/public/'
-                  ? null : path.join('/', path.relative(__dirname, path.resolve(dirname, '../')));
+                const parent =
+                  url === '/public' || url === '/public/'
+                    ? null
+                    : path.join('/', path.relative(__dirname, path.resolve(dirname, '../')));
 
                 const htmlStr = template.render(data.toString(), {
                   parent,

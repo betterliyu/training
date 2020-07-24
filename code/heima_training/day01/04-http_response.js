@@ -7,9 +7,9 @@ const server = http.createServer();
 // 监听请求，回调函数接收两个参数  request, response
 server.on('request', (req, res) => {
   const { url } = req;
-  if (url == '/') {
+  if (url === '/') {
     res.end('index');
-  } else if (url == '/login') {
+  } else if (url === '/login') {
     res.end('login');
   } else {
     res.end('404');

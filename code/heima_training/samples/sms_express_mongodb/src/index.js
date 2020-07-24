@@ -23,22 +23,19 @@ app.set('views', path.join(__dirname, 'pages'));
 app.use(student);
 
 app.use((req, res) => {
-  res.render('404.html')
-})
+  res.render('404.html');
+});
 
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.log(err);
   if (err.errorCode) {
-    return res
-      .status(err.errorCode)
-      .send(err);
+    return res.status(err.errorCode).send(err);
   }
-  return res
-    .status(500)
-    .send({
-      errorCode: 500,
-      errorMessage: 'Server error.'
-    });
+  return res.status(500).send({
+    errorCode: 500,
+    errorMessage: 'Server error.',
+  });
 });
 
-app.listen('3000', () => { });
+app.listen('3000', () => {});
