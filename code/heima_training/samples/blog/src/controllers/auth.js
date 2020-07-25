@@ -26,9 +26,10 @@ exports.tryAutoLogin = async (req, res, next) => {
       const user = await UserModel.findOne({ _id: tokenModel.uid }).exec();
       if (user) {
         req.login(user, () => {});
+        req.app.locals.user = user;
       }
     } else {
-      await UserModel.remove({ token });
+      await RememberMeTokenModel.remove({ token });
     }
   }
   return next();
@@ -62,7 +63,7 @@ exports.logout = async (req, res) => {
   const token = req.cookies.remember_me;
 
   await RememberMeTokenModel.remove({ token }).exec();
-
+  delete req.app.locals.user;
   req.logOut();
   res.clearCookie('remember_me');
   res.redirect('/auth/login');

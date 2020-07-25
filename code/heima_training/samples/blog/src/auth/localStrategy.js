@@ -23,7 +23,7 @@ module.exports = new LocalStrategy(
       if (user.password !== md5(md5(password))) {
         return done(null, false, { message: 'Password is not valid.' });
       }
-
+      req.app.locals.user = user;
       return done(null, user);
     } catch (error) {
       return done(error);

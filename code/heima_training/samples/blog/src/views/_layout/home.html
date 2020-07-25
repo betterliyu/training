@@ -1,0 +1,26 @@
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>{{ title }}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/public/css/offcanvas.css" />
+    {{ block 'head' }}{{ /block }}
+  </head>
+
+  <body class="bg-light">
+    {{ include '../_partial/header.html' }}
+
+    <main role="main" class="container">
+      {{ block 'main' }}{{ /block }}
+    </main>
+
+    {{ include '../_partial/footer.html' }}
+
+    {{ block 'script' }}{{ /block }}
+  </body>
+
+</html>

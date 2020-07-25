@@ -30,7 +30,6 @@ module.exports = function useMiddlewares(app, passport, connection) {
       secret: "you can't get it, bro!",
       resave: true,
       saveUninitialized: false,
-      cookie: { maxAge: 24 * 60 * 60 * 1000 },
       // persistent session
       store: new MongoStore({
         mongooseConnection: connection,
