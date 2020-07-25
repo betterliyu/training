@@ -1,4 +1,5 @@
 const md5 = require('blueimp-md5');
+
 const LocalStrategy = require('passport-local').Strategy;
 const UserModel = require('../models/user');
 
@@ -10,7 +11,7 @@ module.exports = new LocalStrategy(
   },
   async (req, account, password, done) => {
     try {
-      req.flash('formData', req.body);
+      req.flash('formData', { account: req.body.account });
       const user = await UserModel.findOne({
         $or: [{ email: account }, { nickname: account }],
       }).exec();

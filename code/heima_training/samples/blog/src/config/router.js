@@ -6,17 +6,24 @@ const isLoggedIn = require('../auth/isLoggedIn');
 module.exports = function router(app, passport) {
   // local strategy
   const authLocalOption = {
-    successRedirect: '/',
     failureRedirect: '/auth/login',
     failureFlash: true,
   };
 
   // routes
+
+  app.use(auth.tryAutoLogin);
+
   // post routes
   app.get('/', isLoggedIn, post.load);
 
   // auth routes
-  app.post('/auth/login', passport.authenticate('local', authLocalOption));
+  app.post(
+    '/auth/login',
+    passport.authenticate('local', authLocalOption),
+    auth.rememberMe,
+    (req, res) => res.redirect('/')
+  );
 
   app.get('/auth/login', auth.loadLogin);
   app.get('/auth/logout', auth.logout);

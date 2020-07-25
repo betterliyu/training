@@ -29,10 +29,13 @@ module.exports = function useMiddlewares(app, passport, connection) {
     session({
       secret: "you can't get it, bro!",
       resave: true,
-      saveUninitialized: true,
+      saveUninitialized: false,
+      cookie: { maxAge: 24 * 60 * 60 * 1000 },
       // persistent session
       store: new MongoStore({
         mongooseConnection: connection,
+        autoRemove: 'interval',
+        autoRemoveInterval: 10, // In minutes. Default
       }),
     })
   );
