@@ -1,18 +1,18 @@
-import React from 'react';
-import MultipleContext from './MultipleContext';
-import TestUpdateContext from './TestUpdateContext';
+import React from "react";
+import MultipleContext from "./MultipleContext";
+import TestUpdateContext from "./TestUpdateContext";
 
 export default (props) => {
   return (
     <TestUpdateContext.Consumer>
       {(testUpdate) => (
-        <MultipleContext>
+        <MultipleContext.Consumer>
           {(multi) => (
             <div>
               {testUpdate} | {multi}
             </div>
           )}
-        </MultipleContext>
+        </MultipleContext.Consumer>
       )}
     </TestUpdateContext.Consumer>
   );
