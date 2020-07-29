@@ -1,0 +1,3 @@
+# remove default title of md file
+name: true
+title: false
