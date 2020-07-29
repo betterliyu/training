@@ -78,35 +78,126 @@ const App = () => (
 
 ### API
 
-- React.createContext
+#### React.createContext(defaultValue)
 
-  将 `undefined` 传递给 Provider 的 value 时，消费组件的 `defaultValue` 不会生效。
+创建一个 context 对象，可以传入一个默认值作为参数
 
-- Context.Provider
+**只有**当组件所处的树中没有匹配到 Provider 时，其 `defaultValue` 参数才会生效。将 `undefined` 传递给 Provider 的 value 时，消费组件的 `defaultValue` 不会生效。
 
-  Provider 及其内部 consumer 组件都不受制于 `shouldComponentUpdate` 函数，因此当 consumer 组件在其祖先组件退出更新的情况下也能更新。
+#### Context.Provider
 
-  Context 变化引起 Consumer 组件渲染时，也不会触发 `shouldComponentUpdate` 。
+这是一个 Provider 组件，包裹在需要订阅这个 context 的组件上级。提供一个 props `value`，用来给 context 传递自定义的值。内部的 consumer 组件，拿到的就是这个自定义的值。
 
-- Class.contextType
+```jsx
+<TestUpdateContext.Provider value={this.state.updateValue}>
+  <TestUpdateParent data={this.props.data}></TestUpdateParent>
+</TestUpdateContext.Provider>
+```
 
-  将 context 对象挂载到组件对象上 this.context。
+Provider 及其内部 consumer 组件都不受制于 `shouldComponentUpdate` 函数，因此当 consumer 组件在其祖先组件退出更新的情况下也能更新。
 
-- Context.Consumer
+Context 变化引起 Consumer 组件渲染时，也不会触发 `shouldComponentUpdate` 。
 
-  ```jsx
-  <MyContext.Consumer>
-    {value => /* 基于 context 值进行渲染*/}
-  </MyContext.Consumer>
-  ```
+```jsx
+export default class TestUpdateParent extends React.Component {
+  shouldComponentUpdate() {
+    // 即使这里阻止了由于 App 的 render 导致的渲染，TestUpdate 还是会更新，
+    // 因为context变化引起的render不会受 shouldComponentUpdate 影响
+    return true;
+  }
 
-- Context.displayName
+  render() {
+    return <TestUpdate data={this.props.data} />;
+  }
+}
 
-  
+export default class TestUpdate extends React.Component {
+  shouldComponentUpdate() {
+    // 如果是由于 context 更新触发了消费组件的渲染，甚至都不会触发消费组件的 
+    // shouldComponentUpdate 方法，
+    // 如果是由父组件的渲染引起的，则会正常执行这个钩子
+    return false;
+  }
 
-### 多个Context
+  render() {
+    return (
+      <div>
+        {this.context}|{this.props.data}
+      </div>
+    );
+  }
+}
+TestUpdate.contextType = TestUpdateContext;
+```
+
+#### Class.contextType
+
+在 class 组件中将 context 对象挂载到组件对象上 this.context。这样的话，就可以在组件的任何生命周期中通过访问 this.context 来得到值。
+
+```jsx
+TestUpdate.contextType = TestUpdateContext;
+// 如果支持 static 属性，也可以使用
+static contextType = TestUpdateContext;
+
+render() {
+  let value = this.context;
+}
+```
+
+#### Context.Consumer
+
+在 function 组件中订阅 context
+
+```jsx
+export default (props) => {
+  return (
+    <TestUpdateContext.Consumer>
+      {(testUpdate) => (
+        <div>
+          {testUpdate}
+        </div>
+      )}
+    </TestUpdateContext.Consumer>
+  );
+};
+
+```
+
+#### Context.displayName
+
+在 React DevTools 中显示人能看懂的名字。
+
+
+
+### 订阅多个 Context
+
+想要在一个组件中订阅多个不同的 context，只能使用这种方式。尝试合同经常同时出现的多个 context。
+
+```jsx
+<TestUpdateContext.Consumer>
+  {(testUpdate) => (
+    <MultipleContext.Consumer>
+      {(multi) => (
+        <div>
+          {testUpdate} | {multi}
+        </div>
+      )}
+    </MultipleContext.Consumer>
+  )}
+</TestUpdateContext.Consumer>
+```
 
 
 
 ### 父组件刷新导致 Provider 重新渲染的问题
+
+因为 React 使用 `Object.is` 来判断值是否有改变，所以下面这种传值的方式可能导致不必要的刷新
+
+```jsx
+<MyContext.Provider value={{something: 'something'}}>
+  <Toolbar />
+</MyContext.Provider>
+```
+
+每一次渲染都会传入一个全新的`{ something: 'something' }`，为了防止这种情况的方式，可以把值保存在 state 中。
 
