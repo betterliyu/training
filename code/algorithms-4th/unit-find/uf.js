@@ -3,7 +3,7 @@
  */
 class UF {
   constructor(n) {
-    this.count = 0;
+    this.count = n;
     this.parents = [];
     for (let i = 0; i < n; i += 1) {
       this.parents[i] = i;
