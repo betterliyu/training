@@ -21,6 +21,7 @@ class UF {
     const rootQ = this.find(q);
     if (rootP !== rootQ) {
       this.parents[rootP] = rootQ;
+      this.count -= 1;
     }
   }
 
