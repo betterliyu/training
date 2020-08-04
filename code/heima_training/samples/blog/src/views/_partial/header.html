@@ -1,0 +1,19 @@
+<nav class="row hidden-xs hidden-sm navbar fixed-top navbar-dark bg-dark">
+  <div class="col-sm-8 col-md-9 col-lg-9">
+    <div class="sf-header__logo">
+      <a class="navbar-brand mr-auto mr-lg-0" href="/">Blogs</a>
+    </div>
+  </div>
+  <div class="col-sm-4 col-md-3 col-lg-3 text-right">
+    <ul class="opts list-inline hidden-xs">
+      <li class="opts__item">
+        {{ if user }}
+        <a href="/auth/logout" class="SFRegister btn-signin" style="margin-bottom: 2px;">退出登录</a>
+        {{ else }}
+        <a href="/auth/login" class="SFRegister btn-signin" style="margin-bottom: 2px;">登录</a>
+        <a href="/auth/register" class="SFLogin ml10 btn-signup" onclick="">注册</a>
+        {{ /if }}
+      </li>
+    </ul>
+  </div>
+</nav>
