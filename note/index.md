@@ -201,3 +201,23 @@ export default (props) => {
 
 每一次渲染都会传入一个全新的`{ something: 'something' }`，为了防止这种情况的方式，可以把值保存在 state 中。
 
+
+
+## Error Boundries
+
+- 是一个组件
+- 捕获子组件树上的错误
+- 无法捕获
+  - 事件，异步，SSR，自身错误
+- [`static getDerivedStateFromError()`](https://zh-hans.reactjs.org/docs/react-component.html#static-getderivedstatefromerror) 和 [`componentDidCatch()`](https://zh-hans.reactjs.org/docs/react-component.html#componentdidcatch)
+  - getDerivedStateFromError() 渲染备用UI componentDidCatch() 打印错误信息
+- 类似 catch  只有类组件才能被定义成错误边界组件
+- babel-plugin-transform-react-jsx-source  在日志中显示代码行号
+
+
+
+## Refs 转发
+
+- React.forwardRef((props, ref) => ...)
+- React.createRef()
+- <button ref={ref} ... />
