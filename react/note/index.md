@@ -205,19 +205,118 @@ export default (props) => {
 
 ## Error Boundries
 
-- 是一个组件
-- 捕获子组件树上的错误
-- 无法捕获
-  - 事件，异步，SSR，自身错误
-- [`static getDerivedStateFromError()`](https://zh-hans.reactjs.org/docs/react-component.html#static-getderivedstatefromerror) 和 [`componentDidCatch()`](https://zh-hans.reactjs.org/docs/react-component.html#componentdidcatch)
-  - getDerivedStateFromError() 渲染备用UI componentDidCatch() 打印错误信息
-- 类似 catch  只有类组件才能被定义成错误边界组件
-- babel-plugin-transform-react-jsx-source  在日志中显示代码行号
+Error Boundries （错误边界）是一个 React class 组件，**用来捕获子组件树中的错误**，并且可以渲染出备用的 UI。需要注意的是有些情况下的错误是无法被捕获的：
+
+- 事件处理函数中的错误
+- 异步代码错误
+- 服务端渲染
+- 函数边界本身发生的错误
+
+如果一个 class 组件定义了[`static getDerivedStateFromError()`](https://zh-hans.reactjs.org/docs/react-component.html#static-getderivedstatefromerror) 和 [`componentDidCatch()`](https://zh-hans.reactjs.org/docs/react-component.html#componentdidcatch) 中的任意一个方法，这个组件就会被认为是一个错误边界组件。
+
+- static getDerivedStateFromError() 用来渲染备用的 UI；
+
+- componentDidCatch() 用来打印错误信息 
+
+  错误信息包括 JavaScript 栈和 React 组件栈。
+
+  - 如果是自定义配置脚手架，可以使用插件 babel-plugin-transform-react-jsx-source  在日志中显示代码行号；
+  - 对于组件名称，在 JavaScript 代码压缩之后会变得很难看，可以添加一个 function.name-polyfill ，或者添加 displayName 属性。
 
 
 
 ## Refs 转发
 
-- React.forwardRef((props, ref) => ...)
-- React.createRef()
-- <button ref={ref} ... />
+通常只有在开发组件库时需要用到 Refs 转发，当然如果遇到需要在父组件中访问子组件 DOM 的时候也可以使用。
+
+### 获取组件内部的 DOM
+
+定义一个 FancyButton 组件，在使用这个组件的时候通过像组件内部转发 ref ，获取到内部原生 dom 的引用，从而控制 dom 的行为。
+
+1. 创建 ref 对象，
+
+2. 通过 ref 属性，把这个对象传递到 FancyButton 组件内，
+
+3. 使用 React.forwardRef() 来接受上一步传递的参数，并创建一个 FancyButton 组件，
+
+4. 将 ref 参数向下转发到原生的 button 上面，还是使用 ref 属性，
+
+5. 当 button 渲染完成，ref ，ref.current 就执行了这个 button
+
+   ```jsx
+   export default (props) => {
+     // 1
+     const ref = React.createRef();
+   
+     setTimeout(() => {
+       if (ref && ref.current) {
+         // 5
+         ref.current.style.color = 'red';
+       }
+     }, 5000);
+   
+     // 2
+     return (
+       <div>
+         <p>5 秒后字体颜色变成红色</p>
+         <FancyButton ref={ref}>Click Me</FancyButton>
+       </div>
+     );
+   };
+   
+   // 3
+   export default React.forwardRef((props, refInParent) => {
+     // 4
+     return <button ref={refInParent}>{props.children}</button>;
+   });
+   ```
+
+> 注意
+>
+> 第二个参数 `ref` 只在使用 `React.forwardRef` 定义组件时存在。常规函数和 class 组件不接收 `ref` 参数，且 props 中也不存在 `ref`。
+>
+> Ref 转发不仅限于 DOM 组件，你也可以转发 refs 到 class 组件实例中。
+
+
+
+### 在高阶组件中使用
+
+我们一般使用高阶组件来包裹业务组件，在使用组件是实际上使用的是最外层组件。如果我们想要获取内部组件的ref，我们直接把 ref 挂载到高阶组件上是不行的，因为 ref 不会被高阶组件传递到业务组件上。所以我们需要使用React.forwardRef() 来实现这样的需求。
+
+```jsx
+// FancyButton
+// 先创建一个可以向下转发的 FancyButton
+// 这一步是将 ref 从 FancyButton 转发到 button
+const FancyButton = React.forwardRef((props, refInParent) => {
+  return <button ref={refInParent}>{props.children}</button>;
+});
+// 使用高阶组件包裹
+export default logProps(FancyButton);
+
+
+// logProps
+export default (Componet) => {
+  class LogProps extends React.Component {
+    componentDidUpdate(prevProps) {
+      console.log('old props:', prevProps);
+      console.log('new props:', this.props);
+    }
+
+    render() {
+      const { forwardedRef, ...rest } = this.props;
+      // 将 ref 从 LogProps 转发到 FancyButton
+      return <Componet ref={forwardedRef} {...rest}></Componet>;
+    }
+  }
+  // 如果不使用转发， ref 无法传递给 forwardedRef
+  // return LogProps;
+
+  // 这一步是将 ref 从最外层转发到 LogProps
+  return React.forwardRef((props, ref) => {
+    return <LogProps forwardedRef={ref} {...props}></LogProps>;
+  });
+};
+```
+
+
+
