@@ -9,7 +9,7 @@ class MyList extends LinkedList {
     if (k === 1) {
       const res = this.first;
       this.first = this.first.next;
-      return res;
+      return res.item;
     }
 
     let cur = this.first;
@@ -19,7 +19,7 @@ class MyList extends LinkedList {
       if (pos === k) {
         const res = cur.next;
         cur.next = cur.next.next;
-        return res;
+        return res.item;
       }
       pos += 1;
       cur = cur.next;
@@ -29,4 +29,4 @@ class MyList extends LinkedList {
   }
 }
 
-exports = MyList;
+module.exports = MyList;

@@ -1,4 +1,4 @@
-const isBlanced = (input) => {
+const isBalanced = (input) => {
   const stack = [];
   for (let i = 0; i < input.length; i += 1) {
     let match = false;
@@ -21,4 +21,4 @@ const isBlanced = (input) => {
   return stack.length === 0;
 };
 
-exports = isBlanced;
+module.exports = isBalanced;

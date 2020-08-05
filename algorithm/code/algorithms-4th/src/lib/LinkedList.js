@@ -1,6 +1,15 @@
+class Node {
+  constructor(item) {
+    this.item = item;
+    this.next = null;
+  }
+}
+
 class LinkedList {
   constructor(first) {
-    this.first = first;
+    if (first) {
+      this.first = new Node(first);
+    }
   }
 
   find(i) {
@@ -18,9 +27,9 @@ class LinkedList {
     return null;
   }
 
-  append(node) {
+  append(item) {
     if (this.first == null) {
-      this.first = node;
+      this.first = new Node(item);
       return;
     }
 
@@ -29,7 +38,7 @@ class LinkedList {
     while (last.next != null) {
       last = last.next;
     }
-    last.next = node;
+    last.next = new Node(item);
   }
 
   delete(k) {
@@ -40,7 +49,7 @@ class LinkedList {
     if (k === 1) {
       const res = this.first;
       this.first = this.first.next;
-      return res;
+      return res.item;
     }
 
     let cur = this.first;
@@ -50,7 +59,7 @@ class LinkedList {
       if (pos === k) {
         const res = cur.next;
         cur.next = cur.next.next;
-        return res;
+        return res.item;
       }
       pos += 1;
       cur = cur.next;
@@ -59,7 +68,7 @@ class LinkedList {
     return null;
   }
 
-  length() {
+  size() {
     if (this.first == null) {
       return 0;
     }
@@ -73,22 +82,9 @@ class LinkedList {
     }
     return pos;
   }
-
-  print() {
-    let cur = this.first;
-    while (cur.next != null) {
-      console.log(`${cur.item} `);
-      cur = cur.next;
-    }
-  }
 }
 
-class Node {
-  constructor(item) {
-    this.item = item;
-    this.next = null;
-  }
-}
-
-exports.LinkedList = LinkedList;
-exports.Node = Node;
+module.exports = {
+  LinkedList,
+  Node,
+};

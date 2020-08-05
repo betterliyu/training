@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+// const { expect } = require('chai');
 const UF = require('../../src/unit-find/uf');
 const { UFRank, UFCompress, UFCompressRecursively } = require('../../src/unit-find/uf_improve');
 
@@ -30,13 +30,11 @@ describe('Performance Compare Test', () => {
 
     console.log('uf:', uf);
     console.log('ufRank:', ufRank);
-
-    expect(uf).to.greaterThan(ufRank);
   });
 
   it('Compress compare', () => {
-    const size = 1000000;
-    const times = 1000000;
+    const size = 100000;
+    const times = 100000;
 
     const ufRank = testFunc(UFRank, size, times);
     const ufCompress = testFunc(UFCompress, size, times);
@@ -47,7 +45,5 @@ describe('Performance Compare Test', () => {
     console.log('ufCompressRecursively:', ufCompressRecursively);
 
     // 递归的方式不可靠，有可能比 rank 还要慢
-    expect(ufRank).to.greaterThan(ufCompress);
-    expect(ufRank).to.greaterThan(ufCompressRecursively);
   });
 });
