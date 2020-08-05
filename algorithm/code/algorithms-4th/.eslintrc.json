@@ -13,6 +13,7 @@
   "rules": {
     "prettier/prettier": "error",
     "no-console": "off",
-    "mocha/no-mocha-arrows": "off"
+    "mocha/no-mocha-arrows": "off",
+    "max-classes-per-file": "off"
   }
 }

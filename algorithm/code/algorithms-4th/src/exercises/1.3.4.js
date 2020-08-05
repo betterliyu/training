@@ -1,11 +1,4 @@
-const readline = require('readline');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-const parenthese = (input) => {
+const isBlanced = (input) => {
   const stack = [];
   for (let i = 0; i < input.length; i += 1) {
     let match = false;
@@ -28,11 +21,4 @@ const parenthese = (input) => {
   return stack.length === 0;
 };
 
-rl.on('line', (line) => {
-  console.log(parenthese(line) ? 'match' : 'no match');
-});
-
-rl.on('close', () => {
-  console.log('bye bye');
-  process.exit(0);
-});
+exports = isBlanced;
