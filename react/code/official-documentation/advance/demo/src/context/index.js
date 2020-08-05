@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 
 import TestUpdateContext from './TestUpdateContext';
 import TestUpdateFunc from './TestUpdateFunc';
@@ -9,39 +8,40 @@ import Multiple from './Multiple';
 
 class App extends React.Component {
   state = {
-    updateValue: 'value1',
+    updateValue: 'context 1',
+    data: 'props 1',
   };
 
   render() {
     return (
       <MultipleContext.Provider value={'multiple'}>
         <TestUpdateContext.Provider value={this.state.updateValue}>
-          <div className='App'>
+          <div className="App">
+            <h3>父组件 shouldComponentUpdate 不会阻止 context 对子组件的刷新</h3>
             <button
               onClick={() =>
                 this.setState((prevState, prevProp) => ({
-                  data: prevState.data === 'data1' ? 'data2' : 'data1',
+                  data: prevState.data === 'props 1' ? 'props 2' : 'props 1',
                 }))
               }
             >
-              Toggle update text
-            </button>
+              修改 props 值
+            </button>{' '}
+            &nbsp;
             <button
               onClick={() =>
                 this.setState((prevState, prevProp) => ({
-                  data: prevState.data === 'data1' ? 'data2' : 'data1',
-                  updateValue:
-                    prevState.updateValue === 'value1' ? 'value2' : 'value1',
+                  data: prevState.data === 'props 1' ? 'props 2' : 'props 1',
+                  updateValue: prevState.updateValue === 'context 1' ? 'context 2' : 'context 1',
                 }))
               }
             >
-              Toggle data text
+              修改 context 值
             </button>
-            <hr />
-            <TestUpdateParent data={this.props.data}></TestUpdateParent>
-            <hr />
+            <TestUpdateParent data={this.state.data}></TestUpdateParent>
+            <h3>函数组件下使用 context </h3>
             <TestUpdateFunc></TestUpdateFunc>
-            ================================================
+            <h3>多重 context </h3>
             <Multiple />
           </div>
         </TestUpdateContext.Provider>

@@ -9,7 +9,8 @@ export default class TestUpdate extends React.Component {
   render() {
     return (
       <div>
-        {this.context}|{this.props.data}
+        <p>context 值: {this.context} </p>
+        <p>props 值: {this.props.data} </p>
       </div>
     );
   }

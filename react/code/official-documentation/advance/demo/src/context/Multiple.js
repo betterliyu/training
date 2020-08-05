@@ -1,6 +1,6 @@
-import React from "react";
-import MultipleContext from "./MultipleContext";
-import TestUpdateContext from "./TestUpdateContext";
+import React from 'react';
+import MultipleContext from './MultipleContext';
+import TestUpdateContext from './TestUpdateContext';
 
 export default (props) => {
   return (
@@ -9,7 +9,8 @@ export default (props) => {
         <MultipleContext.Consumer>
           {(multi) => (
             <div>
-              {testUpdate} | {multi}
+              <p>context 1: {testUpdate}</p>
+              <p>context 2: {multi}</p>
             </div>
           )}
         </MultipleContext.Consumer>
