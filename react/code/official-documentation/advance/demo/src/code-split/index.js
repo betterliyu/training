@@ -23,16 +23,16 @@ function App() {
 
   return (
     <div className="App">
-      <p>在组件中使用</p>
+      <h3>在组件中使用</h3>
       <Suspense fallback={<div>Loading...</div>}>
         <LazyComponent />
       </Suspense>
 
       <Router>
-        <p>
+        <h3>
           {/* 嵌套路由的链接要写在第二个 Router 里面， 或者最好只用一个 Router */}
           <Link to={`${match.url}/lazy`}>在路由中使用</Link>
-        </p>
+        </h3>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path={match.url} render={() => <div>Static route</div>} />

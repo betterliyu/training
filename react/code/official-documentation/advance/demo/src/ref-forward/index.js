@@ -5,10 +5,9 @@ import InHocSample from './InHocSample';
 export default () => {
   return (
     <div>
-      <p>Ref Forward Sample</p>
+      <h3>Ref Forward Sample</h3>
       <RefForwardSample />
-      <hr />
-      <p>In Hoc Sample</p>
+      <h3>In Hoc Sample</h3>
       <InHocSample />
     </div>
   );
