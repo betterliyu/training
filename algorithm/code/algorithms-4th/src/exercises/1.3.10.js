@@ -72,5 +72,7 @@ const infixToPostfix = (exp) => {
   return datas.pop();
 };
 
-exports.infixToPostfixStrict = infixToPostfixStrict;
-exports.infixToPostfix = infixToPostfix;
+module.exports = {
+  infixToPostfixStrict,
+  infixToPostfix,
+};

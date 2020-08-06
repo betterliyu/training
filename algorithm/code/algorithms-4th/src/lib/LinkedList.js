@@ -6,10 +6,8 @@ class Node {
 }
 
 class LinkedList {
-  constructor(first) {
-    if (first) {
-      this.first = new Node(first);
-    }
+  constructor() {
+    this.first = null;
   }
 
   find(i) {
@@ -83,8 +81,6 @@ class LinkedList {
     return pos;
   }
 }
-
 module.exports = {
   LinkedList,
-  Node,
 };

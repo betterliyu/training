@@ -20,4 +20,6 @@ const evaluatePostfix = (exp) => {
   return datas.pop();
 };
 
-exports.evaluatePostfix = evaluatePostfix;
+module.exports = {
+  evaluatePostfix,
+};

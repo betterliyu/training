@@ -56,5 +56,4 @@ class LinkedStack {
 
 module.exports = {
   LinkedStack,
-  Node,
 };
