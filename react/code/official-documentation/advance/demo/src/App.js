@@ -5,6 +5,7 @@ import TOC from './TOC';
 import CodeSplit from './code-split';
 import Context from './context';
 import RefForward from './ref-forward';
+import HOC from './hoc';
 
 function App() {
   return (
@@ -24,6 +25,10 @@ function App() {
           </Route>
           <Route path="/ref-forward">
             <RefForward />
+          </Route>
+
+          <Route path="/hoc">
+            <HOC />
           </Route>
         </Switch>
       </Router>

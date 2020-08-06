@@ -6,11 +6,11 @@ function TOC() {
     <div className="App">
       <Link to="/code-split">代码分割</Link>
       <br />
-      <br />
       <Link to="/context">Context</Link>
       <br />
-      <br />
       <Link to="/ref-forward">Ref 转发</Link>
+      <br />
+      <Link to="/hoc">HOC</Link>
     </div>
   );
 }
