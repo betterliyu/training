@@ -1,8 +1,8 @@
 const { expect } = require('chai');
-const { maxByRecursion } = require('../../src/exercises/1.3.28.js');
-const { LinkedList } = require('../../src/lib/LinkedList.js');
+const { max } = require('./1.3.27.js');
+const { LinkedList } = require('../lib/LinkedList.js');
 
-describe('Exercises 1.3.28 Test', () => {
+describe('Exercises 1.3.27 Test', () => {
   it('should be 4', () => {
     const list = new LinkedList();
     list.append(1);
@@ -10,12 +10,12 @@ describe('Exercises 1.3.28 Test', () => {
     list.append(3);
     list.append(4);
 
-    expect(maxByRecursion(list.first)).to.equal(4);
+    expect(max(list.first)).to.equal(4);
   });
 
   it('should be 0', () => {
     const list = new LinkedList();
-    expect(maxByRecursion(list.first)).to.equal(0);
+    expect(max(list.first)).to.equal(0);
   });
 
   it('should be 6', () => {
@@ -25,6 +25,6 @@ describe('Exercises 1.3.28 Test', () => {
     list.append(3);
     list.append(4);
 
-    expect(maxByRecursion(list.first)).to.equal(6);
+    expect(max(list.first)).to.equal(6);
   });
 });

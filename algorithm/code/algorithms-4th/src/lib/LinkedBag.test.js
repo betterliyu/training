@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { LinkedBag } = require('../../src/lib/LinkedBag');
+const { LinkedBag } = require('./LinkedBag');
 
 describe('Lib LinkedBag Test', () => {
   it('should output right sentence', () => {

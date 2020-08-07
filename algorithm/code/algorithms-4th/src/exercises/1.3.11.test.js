@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { evaluatePostfix } = require('../../src/exercises/1.3.11');
+const { evaluatePostfix } = require('./1.3.11');
 
 describe('Exercises 1.3.11 Test', () => {
   it('should be 27', () => {

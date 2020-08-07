@@ -1,6 +1,6 @@
 // const { expect } = require('chai');
-const UF = require('../../src/unit-find/uf');
-const { UFRank, UFCompress, UFCompressRecursively } = require('../../src/unit-find/uf_improve');
+const UF = require('./uf');
+const { UFRank, UFCompress, UFCompressRecursively } = require('./uf_improve');
 
 const testFunc = (UFClass, size, times) => {
   const beginTime = +new Date();

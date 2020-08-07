@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { getCompleteExpression } = require('../../src/exercises/1.3.9');
+const { getCompleteExpression } = require('./1.3.9');
 
 describe('Exercises 1.3.9 Test', () => {
   it('should return complete expression', () => {

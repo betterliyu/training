@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { LinkedQueue } = require('../../src/lib/LinkedQueue');
+const { LinkedQueue } = require('./LinkedQueue');
 
 describe('Lib LinkedQueue Test', () => {
   it('should output right sentence', () => {

@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { insertAfter, LinkedList, Node } = require('../../src/exercises/1.3.25.js');
+const { insertAfter, LinkedList, Node } = require('./1.3.25.js');
 
 describe('Exercises 1.3.25 Test', () => {
   it('should do nothing', () => {

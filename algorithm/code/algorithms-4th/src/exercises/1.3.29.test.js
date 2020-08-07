@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 const { expect } = require('chai');
-const { CircleQueue } = require('../../src/exercises/1.3.29.js');
+const { CircleQueue } = require('./1.3.29.js');
 
 describe('Exercises 1.3.29 Test', () => {
   it('should output right queue', () => {

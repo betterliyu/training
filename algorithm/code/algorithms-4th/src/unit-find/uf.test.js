@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const UF = require('../../src/unit-find/uf');
+const UF = require('./uf');
 
 describe('Union-Find Test', () => {
   const uf = new UF(10);

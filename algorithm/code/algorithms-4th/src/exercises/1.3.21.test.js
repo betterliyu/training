@@ -1,6 +1,6 @@
 const { expect } = require('chai');
-const { find } = require('../../src/exercises/1.3.21.js');
-const { LinkedList } = require('../../src/lib/LinkedList.js');
+const { find } = require('./1.3.21.js');
+const { LinkedList } = require('../lib/LinkedList.js');
 
 describe('Exercises 1.3.21 Test', () => {
   it('should find it', () => {

@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const MyList = require('../../src/exercises/1.3.20.js');
+const MyList = require('./1.3.20.js');
 
 describe('Exercises 1.3.20 Test', () => {
   it('should be null', () => {

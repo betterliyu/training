@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { UFRank, UFCompress, UFCompressRecursively } = require('../../src/unit-find/uf_improve');
+const { UFRank, UFCompress, UFCompressRecursively } = require('./uf_improve');
 
 describe('Union-Find Improve Test', () => {
   describe('rank merge', () => {

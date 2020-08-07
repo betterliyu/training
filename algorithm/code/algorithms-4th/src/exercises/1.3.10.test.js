@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const { infixToPostfix, infixToPostfixStrict } = require('../../src/exercises/1.3.10');
+const { infixToPostfix, infixToPostfixStrict } = require('./1.3.10');
 
 describe('Exercises 1.3.10 Test', () => {
   describe('Test strict method', () => {

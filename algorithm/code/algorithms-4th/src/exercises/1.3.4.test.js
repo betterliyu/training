@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const isBalanced = require('../../src/exercises/1.3.4');
+const isBalanced = require('./1.3.4');
 
 describe('Exercises 1.3.4 Test', () => {
   it('should be true', () => {
