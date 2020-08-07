@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 class Node {
   constructor(item) {
     this.item = item;
@@ -94,4 +95,17 @@ class LinkedList {
 }
 module.exports = {
   LinkedList,
+};
+
+const insertAfter = (node, insert) => {
+  if (node && insert) {
+    insert.next = node.next;
+    node.next = insert;
+  }
+};
+
+module.exports = {
+  insertAfter,
+  LinkedList,
+  Node,
 };

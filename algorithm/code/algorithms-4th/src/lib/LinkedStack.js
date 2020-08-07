@@ -52,6 +52,21 @@ class LinkedStack {
     }
     return res.trim();
   }
+
+  [Symbol.iterator]() {
+    const self = this;
+    let cur = self.first;
+    return {
+      next() {
+        if (cur) {
+          const value = cur.item;
+          cur = cur.next;
+          return { done: false, value };
+        }
+        return { done: true };
+      },
+    };
+  }
 }
 
 module.exports = {

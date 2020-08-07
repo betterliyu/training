@@ -10,15 +10,15 @@ describe('Exercises 1.3.19 Test', () => {
     list.append(4);
 
     list.deleteLast();
-    expect(list.find(4)).to.equal(null);
+    expect(list.findIndex(4)).to.equal(null);
 
     list.deleteLast();
-    expect(list.find(3)).to.equal(null);
+    expect(list.findIndex(3)).to.equal(null);
 
     list.deleteLast();
-    expect(list.find(2)).to.equal(null);
+    expect(list.findIndex(2)).to.equal(null);
 
     list.deleteLast();
-    expect(list.find(1)).to.equal(null);
+    expect(list.findIndex(1)).to.equal(null);
   });
 });
