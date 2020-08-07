@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const { maxByRecursion } = require('./1.3.28.js');
-const { LinkedList } = require('../lib/LinkedList.js');
+const { LinkedList } = require('../../lib/LinkedList.js');
 
 describe('Exercises 1.3.28 Test', () => {
   it('should be 4', () => {

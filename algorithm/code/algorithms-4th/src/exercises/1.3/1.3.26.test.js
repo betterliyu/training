@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const { remove } = require('./1.3.26.js');
-const { LinkedList } = require('../lib/LinkedList.js');
+const { LinkedList } = require('../../lib/LinkedList.js');
 
 describe('Exercises 1.3.26 Test', () => {
   it('should delete the first', () => {

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 
-const { LinkedList } = require('../lib/LinkedList');
+const { LinkedList } = require('../../lib/LinkedList');
 
 class MyList extends LinkedList {
   deleteLast() {

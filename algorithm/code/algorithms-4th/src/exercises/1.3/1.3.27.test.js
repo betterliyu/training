@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const { max } = require('./1.3.27.js');
-const { LinkedList } = require('../lib/LinkedList.js');
+const { LinkedList } = require('../../lib/LinkedList.js');
 
 describe('Exercises 1.3.27 Test', () => {
   it('should be 4', () => {

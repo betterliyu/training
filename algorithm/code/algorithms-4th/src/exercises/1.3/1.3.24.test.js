@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const { removeAfter } = require('./1.3.24.js');
-const { LinkedList } = require('../lib/LinkedList.js');
+const { LinkedList } = require('../../lib/LinkedList.js');
 
 describe('Exercises 1.3.24 Test', () => {
   const list = new LinkedList();
