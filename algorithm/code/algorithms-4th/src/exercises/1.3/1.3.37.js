@@ -70,6 +70,14 @@ const josephusByQueue = (total, lucky) => {
   return cur.item;
 };
 
+const josephusByRecursion = (total, lucky) => {
+  if (total === 1) {
+    return 0;
+  }
+  const result = (josephusByRecursion(total - 1, lucky) + lucky) % total;
+  return result;
+};
+
 console.time('list');
 console.log(josephusByCircleList(41, 3));
 console.timeEnd('list');
@@ -77,3 +85,7 @@ console.timeEnd('list');
 console.time('queue');
 console.log(josephusByQueue(41, 3));
 console.timeEnd('queue');
+
+console.time('recursion');
+console.log(josephusByRecursion(41, 3));
+console.timeEnd('recursion');
