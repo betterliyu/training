@@ -39,7 +39,9 @@ function max(tree) {
 
 function insert(x, tree) {
   if (!tree) {
-    tree = x;
+    tree = new Node();
+    tree.data = x;
+    return tree;
   } else {
     while (tree) {
       if (x < tree.data) {
@@ -87,3 +89,5 @@ function deleteNode(x, tree) {
     }
   }
 }
+
+
