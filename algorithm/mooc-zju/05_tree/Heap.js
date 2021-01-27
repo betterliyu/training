@@ -54,11 +54,15 @@ function deleteMax(heap) {
   // 把最后一个值放到根节点
   const temp = heap.elements[heap.size];
   heap.size--;
+  heap.elements.length = heap.elements.length - 1;
+  if (heap.size == 0) {
+    return temp;
+  }
   // 从上到下找到合适的位置，调整树结构
   let index = 1;
   while (index <= heap.size) {
     // 找到左子节点
-    const child = index * 2;
+    let child = index * 2;
     if (child > heap.size) {
       // 没有左子节点，退出循环
       break;
@@ -68,7 +72,8 @@ function deleteMax(heap) {
       child++;
     }
     if (heap.elements[child] > temp) {
-      // 如果子节点大，就定位到子节点，继续向下判断
+      // 如果子节点大，就把子节点挪到上面，继续往下面判断
+      heap.elements[index] = heap.elements[child];
       index = child;
     } else {
       // 子节点小，说明位置合适，退出循环
@@ -79,15 +84,17 @@ function deleteMax(heap) {
   return max;
 }
 
-function createHeap(list) {
+function createMaxHeap(list, maxSize) {
   const h = new Heap();
   h.size = list.length;
   h.elements = [MaxData, ...list];
+  h.capacity = maxSize;
   let parent = parseInt(h.size / 2);
   for (; parent > 0; parent--) {
     // 每一个节点都要向下调整树的位置
     percDown(h, parent);
   }
+  return h;
 }
 
 function percDown(heap, index) {
@@ -104,7 +111,8 @@ function percDown(heap, index) {
       child++;
     }
     if (heap.elements[child] > temp) {
-      // 如果子节点大，就定位到子节点，继续向下判断
+      // 如果子节点大，就把子节点挪到上面，继续往下面判断
+      heap.elements[index] = heap.elements[child];
       index = child;
     } else {
       // 子节点小，说明位置合适，退出循环
@@ -114,4 +122,10 @@ function percDown(heap, index) {
   heap.elements[index] = temp;
 }
 
-createHeap([40, 44, 48, 50, 30, 21, 18, 52, 60]);
+
+module.exports = {
+  Heap,
+  insert,
+  deleteMax,
+  createMaxHeap
+}

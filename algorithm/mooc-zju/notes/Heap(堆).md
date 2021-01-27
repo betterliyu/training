@@ -58,9 +58,7 @@ function create(maxSize) {
 2. 插入之前要判断是否比父节点要小（如果是最小堆就判断是不是比父节点大）。如果不是，为了保证有序性，那我们应该把新元素插入到现在的位置的父节点上；
 3. 依此类推，知道找到根节点，使得整棵树都满足有序性。
 
-$$
-时间复杂度：O(logn)
-$$
+时间复杂度：$O(logn)$
 
 > 如何找到父节点的位置，我们可以利用完全二叉树的特性，用当前的节点位置 index / 2。
 
@@ -75,7 +73,10 @@ function insert(heap, item) {
     return false;
   }
   let index = heap.size + 1;
-  for (; heap.elements[parseInt(index / 2)] < item; index = parseInt(index / 2)
+  for (
+    ;
+    heap.elements[parseInt(index / 2)] < item;
+    index = parseInt(index / 2)
   ) {
     // 之所以不判断 index > 0，因为第一个是哨兵，肯定大于 item，所以 index 最小就是 1
 
@@ -84,7 +85,7 @@ function insert(heap, item) {
   }
   // 父节点比 item 大，则现在的位置就是 item 的位置
   heap.elements[index] = item;
-  // 当前大小加 1 
+  // 当前大小加 1
   heap.size++;
   return true;
 }
@@ -102,9 +103,7 @@ function insert(heap, item) {
 2. 找到根节点的左右子节点，找出最大的那一个，和跟节点（原来的最后一个子节点）互换位置；
 3. 依此类推，直到找到原来的最后一个子节点合适的位置。这样树就会被调整成有序的。
 
-$$
-时间复杂度：O(logn)
-$$
+时间复杂度：$O(logn)$
 
 ```javascript
 function deleteMax(heap) {
@@ -117,11 +116,15 @@ function deleteMax(heap) {
   // 把最后一个值放到根节点
   const temp = heap.elements[heap.size];
   heap.size--;
+  heap.elements.length = heap.elements.length - 1;
+  if (heap.size == 0) {
+    return temp;
+  }
   // 从上到下找到合适的位置，调整树结构
   let index = 1;
   while (index <= heap.size) {
     // 找到左子节点
-    const child = index * 2;
+    let child = index * 2;
     if (child > heap.size) {
       // 没有左子节点，退出循环
       break;
@@ -131,7 +134,8 @@ function deleteMax(heap) {
       child++;
     }
     if (heap.elements[child] > temp) {
-      // 如果子节点大，就定位到子节点，继续向下判断
+      // 如果子节点大，就把子节点挪到上面，继续往下面判断
+      heap.elements[index] = heap.elements[child];
       index = child;
     } else {
       // 子节点小，说明位置合适，退出循环
@@ -147,10 +151,9 @@ function deleteMax(heap) {
 
 ### 从一个数组创建堆
 
-我们可以利用插入算法，将数组元素一个个插入到堆中，但是这样的时间复杂度是 `O(nlogn)`。我们可以考虑先将数组全部存储到完全二叉树数组中，然后从最下面的节点开始调整树。我们只要保证左右子节点树都是堆，然后调整整棵树就可以了，所以我们先从最后一个有子节点的节点开始，向上调整。
-$$
-时间复杂度：O(n)
-$$
+我们可以利用插入算法，将数组元素一个个插入到堆中，但是这样的时间复杂度是 $O(nlogn)$。我们可以考虑先将数组全部存储到完全二叉树数组中，然后从最下面的节点开始调整树。我们只要保证左右子节点树都是堆，然后调整整棵树就可以了，所以我们先从最后一个有子节点的节点开始，向上调整。
+
+时间复杂度：$O(n)$
 
 ```javascript
 function createHeap(list) {
@@ -159,9 +162,10 @@ function createHeap(list) {
   h.elements = [MaxData, ...list];
   let parent = parseInt(h.size / 2);
   for (; parent > 0; parent--) {
-    // 每一个节点都要向下调整树的顺序
+    // 每一个节点都要向下调整树的位置
     percDown(h, parent);
   }
+  return h;
 }
 
 function percDown(heap, index) {
@@ -178,7 +182,8 @@ function percDown(heap, index) {
       child++;
     }
     if (heap.elements[child] > temp) {
-      // 如果子节点大，就定位到子节点，继续向下判断
+      // 如果子节点大，就把子节点挪到上面，继续往下面判断
+      heap.elements[index] = heap.elements[child];
       index = child;
     } else {
       // 子节点小，说明位置合适，退出循环
