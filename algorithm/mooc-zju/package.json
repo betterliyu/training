@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha **/**.test.js",
     "coverage": "nyc --reporter=html npm run test "
   },
   "author": "",
