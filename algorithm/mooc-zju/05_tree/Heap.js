@@ -191,9 +191,20 @@ class MinHeap {
     this.size++;
     return true;
   }
+
+  getPath(i) {
+    let pos = i;
+    let path = [];
+    while (pos > 0) {
+      path.push(this.elements[pos]);
+      pos = parseInt(pos / 2);
+    }
+    return path;
+  }
 }
 
 function percDown_Min(index) {
+  const heap = this;
   const temp = heap.elements[index];
   while (index <= heap.size) {
     // 找到左子节点
@@ -217,6 +228,8 @@ function percDown_Min(index) {
   }
   heap.elements[index] = temp;
 }
+
+
 
 module.exports = {
   MaxHeap,

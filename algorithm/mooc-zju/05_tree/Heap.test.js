@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
 const {
-  MaxHeap
+  MaxHeap,
+  MinHeap
 } = require('./Heap')
 
 describe('test MaxHeap function', function () {
@@ -17,4 +18,16 @@ describe('test MaxHeap function', function () {
     expect(heap.size).to.be.equal(0);
     expect(heap.elements.length).to.be.equal(1);
   });
+});
+
+
+describe('test getPath function of min heap', function () {
+  const minHeap = new MinHeap([10, 23, 26, 46, 24], 5);
+  it('should return right path', () => {
+    expect(minHeap.getPath(5)).to.deep.equal([24, 23, 10]);
+    expect(minHeap.getPath(4)).to.deep.equal([46, 23, 10]);
+    expect(minHeap.getPath(3)).to.deep.equal([26, 10]);
+    expect(minHeap.getPath(2)).to.deep.equal([23, 10]);
+    expect(minHeap.getPath(1)).to.deep.equal([10]);
+  })
 });
