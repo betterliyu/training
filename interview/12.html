@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      /* vh vw */
+     /* html,
+       body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .A {
+        display: block;
+        margin: auto 10px;
+        margin-top: calc(50vh - (25vw - 5px)) ;
+        height: calc(50vw - 10px);
+        font-size: 20px;
+        text-align: center;
+        background-color: grey;
+      } */
+      /* flex */
+      /* html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      .A {
+        display: block;
+        margin: 0 10px;
+        position: relative;
+        height: calc(50vw - 10px);
+        font-size: 20px;
+        text-align: center;
+        background-color: grey;
+      } */
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .A {
+        display: block;
+        position: absolute;
+        top: 50%;
+        width: calc(100% - 20px);
+        margin: 0 10px;
+        font-size: 20px;
+        text-align: center;
+        background-color: grey;
+        padding-top: 50%;
+        transform: translate(0, -50%);
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <span class="A">
+      A
+    </span>
+  </body>
+
+</html>
