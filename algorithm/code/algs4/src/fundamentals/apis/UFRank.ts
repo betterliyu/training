@@ -2,8 +2,14 @@
  * Union-Find improvement
  * 1. 按秩归并：利用 generations 来保存树的层级，把小树放在大树下面，减少树层级增长的速度。
  */
-export default class UFRank {
-  constructor(n) {
+class UFRank {
+  count: number;
+
+  parents: number[];
+
+  generations: number[];
+
+  constructor(n: number) {
     this.count = n;
     this.parents = [];
     this.generations = [];
@@ -13,13 +19,13 @@ export default class UFRank {
     }
   }
 
-  connected(p, q) {
+  connected(p: number, q: number): boolean {
     const rootP = this.find(p);
     const rootQ = this.find(q);
     return rootP === rootQ;
   }
 
-  union(p, q) {
+  union(p: number, q: number): void {
     const rootP = this.find(p);
     const rootQ = this.find(q);
 
@@ -39,7 +45,7 @@ export default class UFRank {
     this.count -= 1;
   }
 
-  find(p) {
+  find(p: number): number {
     let x = p;
     while (this.parents[x] !== x) {
       x = this.parents[x];
@@ -48,6 +54,4 @@ export default class UFRank {
   }
 }
 
-module.exports = {
-  UFRank,
-};
+export { UFRank };

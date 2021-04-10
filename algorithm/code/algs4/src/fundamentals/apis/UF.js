@@ -34,6 +34,4 @@ class UF {
   }
 }
 
-module.exports = {
-  UF,
-};
+export { UF };

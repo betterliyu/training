@@ -1,0 +1,10 @@
+{
+  "compileOnSave": false,
+  "include": ["src", "test"],
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "es6",
+    "lib": ["ES2015"],
+    "outDir": "dist"
+  }
+}

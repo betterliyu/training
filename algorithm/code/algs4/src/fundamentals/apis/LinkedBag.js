@@ -43,6 +43,4 @@ class LinkedBag {
   }
 }
 
-module.exports = {
-  LinkedBag,
-};
+export { LinkedBag };
