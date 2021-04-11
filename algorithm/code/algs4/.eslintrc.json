@@ -23,6 +23,7 @@
     "mocha/no-mocha-arrows": "off",
     "max-classes-per-file": "off",
     "import/prefer-default-export": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "no-restricted-syntax": "off"
   }
 }

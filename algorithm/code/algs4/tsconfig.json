@@ -3,8 +3,9 @@
   "include": ["src", "test"],
   "compilerOptions": {
     "allowJs": true,
-    "target": "es6",
-    "lib": ["ES2015"],
-    "outDir": "dist"
+    "target": "es5",
+    "lib": ["ES2015", "DOM"],
+    "outDir": "dist",
+    "downlevelIteration": true
   }
 }
