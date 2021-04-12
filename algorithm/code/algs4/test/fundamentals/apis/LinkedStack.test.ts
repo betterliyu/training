@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { LinkedStack } from '../../../src/fundamentals/apis/LinkedStack';
 
-describe('Lib LinkedStack Test', () => {
+describe('LinkedStack Test', () => {
   it('should output right sentence', () => {
     const input = 'to be or not to - be - - that - - - is';
     const inputs = input.split(' ');

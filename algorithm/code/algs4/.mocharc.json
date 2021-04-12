@@ -1,5 +1,5 @@
 {
   "color": false,
-  "spec": "test/**/*.{js,ts}",
+  "spec": "test/**/*.ts",
   "require": "ts-node/register"
 }

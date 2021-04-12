@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { LinkedQueue } from '../../../src/fundamentals/apis/LinkedQueue';
 
-describe('Lib LinkedQueue Test', () => {
+describe('LinkedQueue Test', () => {
   it('should output right sentence', () => {
     const input = 'to be or not to - be - - that - - - is';
     const inputs = input.split(' ');

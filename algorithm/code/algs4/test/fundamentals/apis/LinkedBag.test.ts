@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { LinkedBag } from '../../../src/fundamentals/apis/LinkedBag';
 
-describe('Lib LinkedBag Test', () => {
+describe('LinkedBag Test', () => {
   it('should output right sentence', () => {
     const input = 'to be or not to - be - - that - - - is';
     const inputs = input.split(' ');
